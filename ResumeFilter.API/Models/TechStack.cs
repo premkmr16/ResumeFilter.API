@@ -1,8 +1,8 @@
 ﻿namespace ResumeFilter.API.Models;
 
-public class Employee
+public class TechStack
 {
 	public Guid Id { get; set; }
-	public string Email { get; set; }
 	public string Name { get; set; }
+	public ICollection<Candidate> Candidates { get; set; }
 }
