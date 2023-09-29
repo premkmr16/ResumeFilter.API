@@ -24,6 +24,12 @@ builder.Services.AddCors(options =>
 		options.AddPolicy("AllowAll",
 			builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod()));
 
+builder.Services.AddMvc()
+	.AddJsonOptions(options =>
+	{
+		options.JsonSerializerOptions.WriteIndented = true;
+	});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
