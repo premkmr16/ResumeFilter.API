@@ -42,4 +42,18 @@ public class CommonController : ControllerBase
 
 		return Ok(techStacks);
 	}
+	[HttpPost]
+    [Route("createtechstacks")]
+    public async Task<IActionResult> CreateTechStacks(TechStackDto techStackDto)
+    {
+        var techStacks = await _commonService.CreateTechStacks(techStackDto);
+        return Ok("Techstack created successfully");
+    }
+	[HttpPost]
+	[Route("createvendors")]
+	public async Task<IActionResult> CreateVendors(VendorDto vendorDto)
+	{
+		var techStacks = await _commonService.CreateVendors(vendorDto);
+		return Ok("Vendor created successfully");
+	}
 }

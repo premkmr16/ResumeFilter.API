@@ -7,4 +7,7 @@ public interface ICommonService
 {
 	Task<List<VendorDto>> GetVendors();
 	Task<List<TechStackDto>> GetTechStacks();
+	Task<VendorDto> CreateVendors(VendorDto vendorDto);
+	Task<TechStackDto> CreateTechStacks(TechStackDto techStackDto);
+
 }

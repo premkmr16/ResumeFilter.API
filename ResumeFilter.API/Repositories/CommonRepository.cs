@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ResumeFilter.API.Context;
+using ResumeFilter.API.Dtos;
 using ResumeFilter.API.Models;
 using ResumeFilter.API.Repositories.IRepositories;
 
@@ -32,5 +33,17 @@ public class CommonRepository : ICommonRepository
 	public async Task<List<Vendor>> GetVendors()
 	{
 		return await _dbContext.Vendors.ToListAsync();
+	}
+    public async Task<Vendor> CreateVendors(Vendor vendor)
+    {
+		await _dbContext.AddAsync<Vendor>(vendor);
+		await _dbContext.SaveChangesAsync();
+		return vendor;
+	}
+    public async Task<TechStack> CreateTechStacks(TechStack techStack)
+    {
+		await _dbContext.AddAsync<TechStack>(techStack);
+		await _dbContext.SaveChangesAsync();
+		return techStack;
 	}
 }

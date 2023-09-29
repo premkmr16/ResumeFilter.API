@@ -7,9 +7,9 @@ namespace ResumeFilter.API.Controllers
 	[ApiController]
 	public class ResumeController : ControllerBase
 	{
-		public Task<IActionResult> ReadResumes()
-		{
+		//public Task<IActionResult> ReadResumes()
+		//{
 
-		}
+		//}
 	}
 }
