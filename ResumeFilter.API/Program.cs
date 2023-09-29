@@ -1,5 +1,9 @@
 using Microsoft.EntityFrameworkCore;
 using ResumeFilter.API.Context;
+using ResumeFilter.API.Repositories;
+using ResumeFilter.API.Repositories.IRepositories;
+using ResumeFilter.API.Services;
+using ResumeFilter.API.Services.IServices;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +17,13 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<ResumeFilterDbContext>(
 	options => options.UseSqlServer(builder.Configuration.GetConnectionString("RFConnection")));
 
+builder.Services.AddScoped<ICommonRepository, CommonRepository>();
+builder.Services.AddTransient<ICommonService, CommonService>();
+
+builder.Services.AddCors(options =>
+		options.AddPolicy("AllowAll",
+			builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod()));
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -23,6 +34,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseCors("AllowAll");
 
 app.UseAuthorization();
 
