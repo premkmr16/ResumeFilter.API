@@ -10,5 +10,6 @@ public interface ICommonRepository
 	Task <TechStack> GetTechStackById(Guid id);
 	Task<TechStack> CreateTechStacks(TechStack techStack);
 	Task<Vendor> CreateVendors(Vendor vendor);
-
+	Task<List<Candidate>> GetCandidates();
+	Task AddCandidates(List<Candidate> candidates);
 }

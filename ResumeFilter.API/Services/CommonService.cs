@@ -28,18 +28,26 @@ namespace ResumeFilter.API.Services
 
 			return vendors.ToVendorDto();
 		}
-		
-		public async Task<VendorDto> CreateVendors(VendorDto vendor)
+
+		public async Task<VendorDto> CreateVendor(VendorDto vendorDto)
 		{
-			var ven = vendor.ToCreateVendorDto();
-			var result = await _commonRepository.CreateVendors(ven);
-			return result.ToVendor();
+			Vendor vendor = await _commonRepository.CreateVendors(vendorDto.ToVendor());
+
+			return vendor.ToVendorDto();
 		}
-		public async Task<TechStackDto> CreateTechStacks(TechStackDto techStackDto)
+
+		public async Task<TechStackDto> CreateTechStack(TechStackDto techStackDto)
 		{
-			var ven = techStackDto.ToCreateTechStackDto();
-			var result = await _commonRepository.CreateTechStacks(ven);
-			return result.ToTechStack();
+			TechStack techStack = await _commonRepository.CreateTechStacks(techStackDto.ToTechStack());
+
+			return techStack.ToTechStackDto();
+		}
+
+		public async Task<List<CandidateDto>> GetCandidates()
+		{
+			List<Candidate> candidates = await _commonRepository.GetCandidates();
+
+			return candidates.ToCandidateDto();
 		}
 	}
 }

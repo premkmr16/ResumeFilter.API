@@ -42,18 +42,36 @@ public class CommonController : ControllerBase
 
 		return Ok(techStacks);
 	}
+
 	[HttpPost]
-    [Route("createtechstacks")]
-    public async Task<IActionResult> CreateTechStacks(TechStackDto techStackDto)
-    {
-        var techStacks = await _commonService.CreateTechStacks(techStackDto);
-        return Ok("Techstack created successfully");
-    }
+	[Route("createtechstacks")]
+	public async Task<IActionResult> CreateTechStacks(TechStackDto techStackDto)
+	{
+		TechStackDto techStacks = await _commonService.CreateTechStack(techStackDto);
+
+		return Ok("Techstack created successfully");
+	}
+
 	[HttpPost]
 	[Route("createvendors")]
 	public async Task<IActionResult> CreateVendors(VendorDto vendorDto)
 	{
-		var techStacks = await _commonService.CreateVendors(vendorDto);
+		VendorDto vendor = await _commonService.CreateVendor(vendorDto);
+
 		return Ok("Vendor created successfully");
+	}
+
+	[HttpPost]
+	[Route("getcandidates")]
+	public async Task<IActionResult> GetCandidates()
+	{
+		List<CandidateDto> candidates = await _commonService.GetCandidates();
+
+		if (!candidates.Any())
+		{
+			return Ok(new List<CandidateDto>());
+		}
+
+		return Ok(candidates);
 	}
 }

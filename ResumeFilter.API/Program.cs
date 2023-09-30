@@ -19,6 +19,8 @@ builder.Services.AddDbContext<ResumeFilterDbContext>(
 
 builder.Services.AddScoped<ICommonRepository, CommonRepository>();
 builder.Services.AddTransient<ICommonService, CommonService>();
+builder.Services.AddScoped<IBlobService, BlobService>();
+builder.Services.AddTransient<IPdfService, PdfService>();
 
 builder.Services.AddCors(options =>
 		options.AddPolicy("AllowAll",

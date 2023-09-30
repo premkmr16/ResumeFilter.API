@@ -34,16 +34,29 @@ public class CommonRepository : ICommonRepository
 	{
 		return await _dbContext.Vendors.ToListAsync();
 	}
+
     public async Task<Vendor> CreateVendors(Vendor vendor)
     {
 		await _dbContext.AddAsync<Vendor>(vendor);
 		await _dbContext.SaveChangesAsync();
 		return vendor;
 	}
+
     public async Task<TechStack> CreateTechStacks(TechStack techStack)
     {
 		await _dbContext.AddAsync<TechStack>(techStack);
 		await _dbContext.SaveChangesAsync();
 		return techStack;
+	}
+
+	public async Task<List<Candidate>> GetCandidates()
+	{
+		return await _dbContext.Candidates.ToListAsync();
+	}
+
+	public async Task AddCandidates(List<Candidate> candidates)
+	{
+		await _dbContext.AddRangeAsync(candidates);
+		await _dbContext.SaveChangesAsync();
 	}
 }
